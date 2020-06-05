@@ -10,7 +10,7 @@
 
 其实说白了就是 ：
 1. 建立微信群 
-2. 向微信群里发送自己的推广链接
+2. 向微信群里发送自己的推广链接和商品图片
 3. 剩下的尽人事听天命了
 
 ## 功能说明
@@ -93,7 +93,10 @@ python main.py
   ```shell
   docker run -it -d -v $pwd:/youxiang --name youxiang youxiang:1.0.0
   ```
-  
+## 示例截图：
+
+![发送优惠券](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
+
 ## 下一步功能：
 
 1. 接入京东联盟

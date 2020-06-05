@@ -84,7 +84,7 @@ python main.py
    ```shell
    docker run -it -d --name youxiang youxiang:1.0.0
    ```
-3. 登陆微信，运行
+3. 运行以下脚本获取二维码，然后微信登陆
    ```shell
    docker logs -f --tail=1000 youxiang
    ```

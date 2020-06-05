@@ -1,0 +1,6 @@
+retrying==1.3.3
+cn2an==0.4.1
+APScheduler==3.6.3
+selenium
+itchat==1.3.10
+pandas==0.24.2

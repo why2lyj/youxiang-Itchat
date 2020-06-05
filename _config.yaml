@@ -1,0 +1,95 @@
+# 配置文件请严格遵循 yaml 语法格式，yaml 学习地址:
+#  https://ansible-tran.readthedocs.io/en/latest/docs/YAMLSyntax.html
+#  http://einverne.github.io/post/2015/08/yaml.html
+
+wechat_uuid: ''
+
+#---------------------------------------自动回复功能设置--------------------------------------start
+auto_reply_info:
+  # 是否开启自动回复
+  is_auto_reply: False
+
+  # 是否自动回复所有好友(慎重启动！),开启后，仅仅有黑名单的成员才不会自动回复
+  is_auto_reply_all: True
+
+  # 智能闲聊（腾讯）https://ai.qq.com/product/nlpchat.shtml。免费且无限量
+  qqnlpchat_conf:
+    app_id: ''
+    app_key: ''
+
+  # 自动回复消息前缀（不需要则设置为空）
+  auto_reply_prefix: ''
+  # 自动回复消息后缀（不需要则设置为空）
+  auto_reply_suffix: ''
+
+  # 是否允许通过关键字自动加好友
+  is_auto_add_friend: True
+
+  # 加好友时通过的关键字
+  auto_add_friend_keywords:
+    - '优惠群'
+    - '加群'
+    - '线报'
+
+  # 白名单，is_auto_reply_all: False 生效。此名单的用户才可自动回复。（填：文件传输助手，可回复自己，测试效果）
+  auto_reply_white_list:
+    - '文件传输助手'
+
+  # 黑名单，is_auto_reply_all:True 生效。此名单不会自动回复。
+  auto_reply_black_list:
+    - 'Grace.李'
+
+#---------------------------------------自动回复功能设置--------------------------------------end
+
+
+##---------------------------群聊助手设置--------------------------start
+group_helper_conf:
+  is_open: True # 开启群助手
+  is_all: False # 是否对所有群开启。当开启时，只有黑名单的名单才不受影响（慎重开启！）
+
+  # 白名单用户。当 is_all：False。只处理这个群里的消息
+  group_name_white_list:
+    - '淘宝天猫内部优惠群-综合类①'
+    - '淘宝内部优惠群-潮流范①'
+    - '淘宝内部优惠群-零食类①'
+    - '淘宝内部优惠群-女装类①'
+    - '口碑KFC必胜客麦当劳优惠券'
+
+  # 黑名单用户。当 is_all ：True 。这个群里的用户不受影响。
+  group_name_black_list:
+    - ''
+
+  is_at: True # 艾特标记。只有当别人艾特机器人，才会处理消息（慎重关闭！）
+
+  # 是否重复加入
+  enter_mult_group: False
+
+#--------------------------- 群聊助手设置 --------------------------end
+
+
+#--------------------------- 推广客设置 --------------------------start
+
+taobao:
+  is_open: True
+  app_key: ''
+  app_secret: ''
+  adzone_id: ''
+  chat_groups:
+    - {group_name: '淘宝天猫内部优惠群-综合类①', group_material_id: '3756,28026,27446,13366,3786', minute: '15,45', hour: '7-23'}
+    - {group_name: '淘宝内部优惠群-潮流范①', group_material_id: '4093', minute: '20', hour: '7-23'}
+    - {group_name: '口碑KFC必胜客麦当劳优惠券', group_material_id: '19810', minute: '30', hour: '7-23'}
+    - {group_name: '淘宝内部优惠群-女装类①', group_material_id: '3767,27448,13367,3788', minute: '10,40', hour: '7-23'}
+    - {group_name: '淘宝内部优惠群-零食类①', group_material_id: '13375,3761,27451,3791', minute: '10,40', hour: '7-23'}
+
+jingdong:
+  is_open: False
+  app_key: ''
+  app_secret: ''
+  site_id: ''
+  suo_im: ''
+  chat_groups:
+    - {group_name: '京东内部优惠群-9.9专区①', group_material_id: '21', minute: '10,40', hour: '7-23'}
+
+
+#--------------------------- 推广客设置  --------------------------end
+

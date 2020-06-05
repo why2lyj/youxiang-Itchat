@@ -110,5 +110,5 @@ python main.py
 
 本项目受以下项目或文章启发，参考了其中一部分思路，向这些开发者表示感谢。  
 - [EverydayWechat](https://github.com/sfyc23/EverydayWechat)
-- [python 淘宝OPEN API 调用示例](https://www.jianshu.com/p/4e1b6b1d37b4)
+- [python 淘宝OPEN API 调用示例](https://www.jianshu.com/p/f9b5e3020789)
 

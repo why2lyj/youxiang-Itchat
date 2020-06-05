@@ -1,1 +1,111 @@
-# youxiang
+ [![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
+ [![itchat_vesion](https://img.shields.io/badge/Itchat-1.3.10-brightgreen.svg)](https://github.com/littlecodersh/ItChat)
+ [![EverydayWechat](https://img.shields.io/badge/sfyc23/Powered%20By-EverydayWechat-brightgreen.svg)](https://github.com/sfyc23/EverydayWechat/)
+ [![GitHub issues](https://img.shields.io/github/issues/why2lyj/youxiang.svg)](https://github.com/why2lyj/youxiang/issues)
+ 
+ 
+## 项目背景
+
+无非就是想撸羊毛，自己又懒的一个一个找，一个一个发。已知目前的返佣app非常的多，比如：好省，蜜源，粉象，芬香等等等等。归根到底无非是利用淘宝、京东、拼多多、苏宁的开放平台做的。所以想到是否可以利用已有的开放平台来做一个属于自己的撸羊毛项目。
+
+其实说白了就是 ：
+1. 建立微信群 
+2. 向微信群里发送自己的推广链接
+3. 剩下的尽人事听天命了
+
+## 功能说明
+
+项目主要参考 [EverydayWechat](https://github.com/sfyc23/EverydayWechat)
+
+-  支持对多个微信好友自动回复。  （保留原[EverydayWechat](https://github.com/sfyc23/EverydayWechat)功能，自动回复仅保留**智能闲聊（腾讯）**）
+-  群助手功能，仅保留进群自动回复及@时自动回复功能。
+-  淘宝优惠券自动分发。 
+   > 创建定时任务，通过api获取淘宝推广客的优惠信息，发送到群聊。
+
+## 配置信息
+
+仅介绍**推广客设置**，其余配置请参考[EverydayWechat](https://github.com/sfyc23/EverydayWechat)，不做多余赘述。
+
+参数说明：
+| 名称 | 示例       | 必填 | 说明 |
+| -------- | -------------- | ---------- |---------- |
+| is_open | True/False | 必填 | 是否开启淘宝联盟推广|
+| app_key | 淘宝联盟 app_key | 必填 | 淘宝联盟申请下来的 app_key |
+| app_secret | 淘宝联盟 app_secret | 必填 | 淘宝联盟申请下来的 app_secret |
+| adzone_id | 淘宝联盟广告位 | 必填 | 淘宝联盟推广中的广告位 |
+| chat_groups |  | 必填 | 详情见举例 |
+| group_name | 群名称 | 必填 | 对应微信群的群名称 |
+| group_material_id | 物料id | 必填 | 淘宝联盟[material_id](https://market.m.taobao.com/app/qn/toutiao-new/index-pc.html#/detail/10628875?_k=gpov9a)|
+| minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
+| hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
+
+**”实例1**，每天7点到23点，每小时的第10分，第40分，将淘宝物料id:19810，发送至群聊 <口碑KFC必胜客麦当劳优惠券>：
+> {group_name: '口碑KFC必胜客麦当劳优惠券', group_material_id: '19810', minute: '10,40', hour: '7-23'}
+
+**实例2**，每天7点，12点，15点的第30分，将淘宝物料id:3767,27448,13367,3788的优惠券，发送至群聊 <淘宝内部优惠群-女装类①> ：
+> {group_name: '淘宝内部优惠群-女装类①', group_material_id: '3767,27448,13367,3788', minute: '30', hour: '9,12,15'}
+
+*提示* 在运行程序前确保群名已经有且已经保存到通讯录
+
+## 前提准备
+
+申请淘宝联盟api：
+[申请地址](https://pub.alimama.com/?spm=a219t.7664554.a214tr8.19.2f5835d9zBLGBR)
+[文档参考](https://open.taobao.com/doc.htm?docId=73&docType=1)
+
+努力看文档操作，获取到 `App Key` 和 `App Secret`，同时利用商品推广得到 广告位 `adzone_id`
+
+## 快速启动
+
+直接下载此项目或 clone 项目到本地。  
+
+使用 pip 安装依赖:
+
+```
+pip3 install -r requirements.txt
+# 或者是使用 pip
+# pip install -r requirements.txt
+```
+运行：
+```python
+python main.py
+```
+
+扫码后，即可使用。
+
+如果你想使用docker启动（请确保`_config.yaml`文件已改成指定）
+
+1. 首先创建镜像，运行
+   ```shell
+   docker build -f Dockerfile -t youxiang:v1.0.0
+   ```
+   
+2. 启动容器，运行
+   ```shell
+   docker run -it -d --name youxiang youxiang:1.0.0
+   ```
+3. 登陆微信，运行
+   ```shell
+   docker logs -f --tail=1000 youxiang
+   ```
+
+如果你不想每次都进容器改`_config.yaml`在第2步的时候可以将项目目录映射到本地
+  ```shell
+  docker run -it -d -v $pwd:/youxiang --name youxiang youxiang:1.0.0
+  ```
+  
+## 下一步功能：
+
+1. 接入京东联盟
+2. 群内广告直接踢
+  
+## 声明
+
+**禁止将本工具用于商业用途**，如产生法律纠纷与本人无关。  
+
+## Credits 致谢
+
+本项目受以下项目或文章启发，参考了其中一部分思路，向这些开发者表示感谢。  
+- [EverydayWechat](https://github.com/sfyc23/EverydayWechat)
+- [python 淘宝OPEN API 调用示例](https://www.jianshu.com/p/4e1b6b1d37b4)
+

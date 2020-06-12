@@ -317,3 +317,21 @@ def log_all_config():
             print('定时：{alarm_time}，给：{nicknames}，发送提醒内容一次。'.format(alarm_time=alarm_time, nicknames=nns))
 
     print('=' * 80)
+
+#  判断传入的uuid，是否属于我们的群
+def is_white_group(uuid) -> bool:
+    '''
+    判断传入的uuid，是否属于我们的群
+    :param uuid:
+    :return:
+    '''
+    helper = config.get('group_helper_conf')
+    auto_uuids = helper.get('group_name_white_list')
+
+    for auid in auto_uuids:
+        chatrooms = itchat.search_chatrooms(name=auid)
+        print(f'''room: {chatrooms}''')
+        for chat in chatrooms:
+            if chat.UserName == str(uuid):
+                return True
+    return False

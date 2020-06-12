@@ -7,7 +7,9 @@ import time
 import random
 import itchat
 from untils import config
-from chat.itchatHelper import set_system_notice
+from untils.common import del_pic
+from untils.ad import QRcode_detection
+from chat.itchatHelper import set_system_notice, is_white_group
 from untils.common import FILEHELPER
 from untils.qq_nlpchat import get_auto_reply
 
@@ -80,15 +82,26 @@ def handle_groups_message(msg):
     uuid = msg.fromUserName  # 群 uid
     ated_uuid = msg.actualUserName  # 艾特你的用户的uuid
     ated_name = msg.actualNickName  # 艾特你的人的群里的名称
-
-    text = msg['Text']  # 发送到群里的消息。
-
-    conf = config.get('group_helper_conf')
-    if not conf.get('is_open'):
-        return
+    # print(msg)
 
     # 自己通过手机端微信发出的消息不作处理
     if ated_uuid == config.get('wechat_uuid'):
+        return
+
+    conf = config.get('group_helper_conf')
+    text = msg['Text']  # 发送到群里的消息。
+    # 如果是我们的群，不是管理组人员发送的消息，且长度大于30，直接踢
+    # 我们认为 wechat 中一个人的聊天长度不会超过30，
+    # 特别是对于一个优惠券群来说，
+    # 一个可跟你说30个字以上的又如此“谆谆教导”的人值得被踢
+    # 对于广告，宁可错杀不放过一个，随有极端但不菲是一种办法
+    # TODO 此处需要文本审核，但市面上的文本审核都付费，如有免费的请及时通知我
+    group_admins = conf.get('group_admin')
+    if is_white_group(uuid) and (ated_name not in group_admins):
+        if len(str(text)) >= 30:
+            itchat.delete_member_from_chatroom(uuid, [{'UserName': msg.ActualUserName}])
+
+    if not conf.get('is_open'):
         return
 
     # 如果开启了 『艾特才回复』，而群用户又没有艾特你。走垃圾分类
@@ -127,3 +140,23 @@ def handle_groups_message(msg):
         # print('回复{}：{}'.format(ated_name, reply_text))
     else:
         print('自动回复失败\n')
+
+def handle_group_pictures(msg):
+    '''
+    :return:
+    '''
+
+    # 自己通过手机微信发送给别人的消息(文件传输助手除外)不作处理。
+    if msg['FromUserName'] == config.get('wechat_uuid') and msg['ToUserName'] != FILEHELPER:
+        return
+    # 判断是否来自指定群
+    uuid = msg.fromUserName  # 群 uid
+    # print(f'''这个群聊的id是{uuid}''')
+    # ated_uuid = msg.actualUserName  # 发送人的用户uuid
+    # ated_name = msg.actualNickName  # 发送人群里的名称
+    # file_name = msg['FileName'] # 文件默认文件名
+    msg.download(msg.fileName)
+    if is_white_group(uuid):
+        if QRcode_detection(msg.fileName):
+            itchat.delete_member_from_chatroom(msg.FromUserName, [{'UserName': msg.ActualUserName}])
+    del_pic(msg.fileName)

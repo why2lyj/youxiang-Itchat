@@ -20,7 +20,7 @@ from collections import OrderedDict
 from untils import config
 from untils.scheduler import job_tasks
 from chat.itchatHelper import init_wechat_config, set_system_notice
-from chat.message import handle_friends_message, handle_groups_message
+from chat.message import handle_friends_message, handle_groups_message, handle_group_pictures
 
 __all__ = ['run', 'delete_cache']
 
@@ -149,11 +149,10 @@ def text_reply(msg):
     """ 监听用户消息，用于自动回复 """
     handle_friends_message(msg)
 
-# @itchat.msg_register([PICTURE], isGroupChat=True)
-# def picture_group_reply(msg):
-#     """ 监听群消息发来的图片消息 """
-#     pass
-#     # raise NotImplementedError
+@itchat.msg_register([PICTURE], isGroupChat=True)
+def picture_register(msg):
+    """ 监听群消息发来的图片消息 """
+    handle_group_pictures(msg)
 
 @itchat.msg_register([TEXT], isGroupChat=True)
 def text_group(msg):
@@ -201,15 +200,16 @@ def group_note_msg(msg):
 
     邀请进来的和扫二维码进来的进行提示
     """
-    invite_compile = re.compile(r'邀请"(.*?)"加入了群聊\s*$')
+    invite_compile = re.compile(r'"(.*?)"邀请"(.*?)"加入了群聊\s*$')
     scan_invite_compile = re.compile(r'"(.*?)"通过扫描"(.*?)"分享的二维码加入群聊\s*$')
     scan_my_invite_compile = re.compile(r'"(.*?)"通过扫描你分享的二维码加入群聊\s*$')
 
     group_uuid = msg['FromUserName']  # 获取当前群的 uuid
     if group_uuid in group_infos_dict:  # 判断是否为同一个群组
         text = msg['Text']  # 通知的内容
-        invite_names = invite_compile.findall(text) or scan_my_invite_compile.findall(text)  # 判断是否是加入了新用户
-        scan_invite = scan_invite_compile.findall(text)  ## 判断是否是群内人员邀请而入
+        invite_names = scan_my_invite_compile.findall(text)  # 判断是我邀请的
+        scan_invite = scan_invite_compile.findall(text)  ## 判断是否是群内人员通过二维码邀请而入
+        others_invite = invite_compile.findall(text)  ## 判断是否是群内人员邀请直接邀请而入
         if invite_names:  # 用于邀请
             invite_name = invite_names[0]  # 加入者的昵称
             time.sleep(random.randint(1, 2))
@@ -224,18 +224,19 @@ def group_note_msg(msg):
             '''
             itchat.send(note_invite_welcome, group_uuid)  # 向群里发送欢迎语句
 
-        if scan_invite:
-            scan_invite_name = scan_invite[0][0]  # 加入者的昵称
-            scan_inviter = scan_invite[0][1]  # 邀请者的昵称
+        invite_list = scan_invite or others_invite
+        if invite_list:
+            invite_name = invite_list[0][0]  # 加入者的昵称
+            inviter_name = invite_list[0][1]  # 邀请者的昵称
             time.sleep(random.randint(1, 2))
 
-            note_invite_welcome = f'''@{scan_invite_name}\u2005 \n欢迎加入群，请查看群规
+            note_invite_welcome = f'''@{invite_name}\u2005 \n欢迎加入群，请查看群规
 ① 此群禁止发广告，聊天请随意
 ② 请勿发涉黄，涉政，辱骂性话语
 ③ 允许拉小伙伴进来，记得加管理员
 
-@{scan_inviter}\u2005
-请主动约束受邀好友：{scan_invite_name}，若其违反上述约定，送连坐飞机票。
+@{inviter_name}\u2005
+请主动约束受邀好友：{invite_name}，若其违反上述约定，送连坐飞机票！
 如需要帮助请主动联系管理员。
                         '''
             itchat.send(note_invite_welcome, group_uuid)  # 向群里发送欢迎语句

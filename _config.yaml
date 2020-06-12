@@ -10,7 +10,7 @@ auto_reply_info:
   is_auto_reply: False
 
   # 是否自动回复所有好友(慎重启动！),开启后，仅仅有黑名单的成员才不会自动回复
-  is_auto_reply_all: True
+  is_auto_reply_all: False
 
   # 智能闲聊（腾讯）https://ai.qq.com/product/nlpchat.shtml。免费且无限量
   qqnlpchat_conf:
@@ -37,7 +37,7 @@ auto_reply_info:
 
   # 黑名单，is_auto_reply_all:True 生效。此名单不会自动回复。
   auto_reply_black_list:
-    - 'Grace.李'
+    - ''
 
 #---------------------------------------自动回复功能设置--------------------------------------end
 
@@ -64,6 +64,9 @@ group_helper_conf:
   # 是否重复加入
   enter_mult_group: False
 
+  group_admin:
+    - '' ## 该微信聊天的管理员，管理发广告不被踢
+
 #--------------------------- 群聊助手设置 --------------------------end
 
 
@@ -88,7 +91,7 @@ jingdong:
   site_id: ''
   suo_im: ''
   chat_groups:
-    - {group_name: '京东内部优惠群-9.9专区①', group_material_id: '21', minute: '10,40', hour: '7-23'}
+    - {group_name: '京东内部优惠群-9.9专区①', group_material_id: '10', minute: '10,40', hour: '7-23'}
 
 
 #--------------------------- 推广客设置  --------------------------end

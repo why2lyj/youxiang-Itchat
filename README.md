@@ -21,12 +21,17 @@
 -  群助手功能，仅保留进群自动回复及@时自动回复功能。
 -  淘宝优惠券自动分发。 
    > 创建定时任务，通过api获取淘宝推广客的优惠信息，发送到群聊。
+-  京东优惠券自动分发。
+   > 创建定时任务，通过api获取京东联盟的优惠信息，发送到群聊。
 
 ## 配置信息
 
 仅介绍**推广客设置**，其余配置请参考[EverydayWechat](https://github.com/sfyc23/EverydayWechat)，不做多余赘述。
 
 参数说明：
+
+淘宝联盟
+
 | 名称 | 示例       | 必填 | 说明 |
 | -------- | -------------- | ---------- |---------- |
 | is_open | True/False | 必填 | 是否开启淘宝联盟推广|
@@ -36,6 +41,20 @@
 | chat_groups |  | 必填 | 详情见举例 |
 | group_name | 群名称 | 必填 | 对应微信群的群名称 |
 | group_material_id | 物料id | 必填 | 淘宝联盟[material_id](https://market.m.taobao.com/app/qn/toutiao-new/index-pc.html#/detail/10628875?_k=gpov9a)|
+| minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
+| hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
+
+京东联盟
+
+| 名称 | 示例       | 必填 | 说明 |
+| -------- | -------------- | ---------- |---------- |
+| is_open | True/False | 必填 | 是否开启京东联盟推广|
+| app_key | 京东联盟 app_key | 必填 | 京东联盟申请下来的 app_key |
+| app_secret | 淘宝联盟 app_secret | 必填 | 京东联盟申请下来的 app_secret |
+| site_id | 京东联盟网站id或app id | 必填 | 京东联网站id或app id |
+| chat_groups |  | 必填 | 详情见举例 |
+| group_name | 群名称 | 必填 | 对应微信群的群名称 |
+| group_material_id | 物料id | 必填 | 京东联盟物料id|
 | minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
 | hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
 
@@ -54,6 +73,19 @@
 [文档参考](https://open.taobao.com/doc.htm?docId=73&docType=1)
 
 努力看文档操作，获取到 `App Key` 和 `App Secret`，同时利用商品推广得到 广告位 `adzone_id`
+
+申请京东联盟api：
+[申请地址](https://union.jd.com/)
+[文档参考](https://union.jd.com/helpcenter/13246-13247-46301)
+
+要使用京东联盟获取推广优惠券需要有siteId(站点ID是指在联盟后台的推广管理中的网站Id、APPID)，此申请需要网站备案或有实际app。如没有尽早申请。
+
+另外由于京东联盟生成短址的接口需要申请，申请资质要求（[参考](https://union.jd.com/helpcenter/13246-13247-46301)）目前非力所能及，故采用[suo.mi](http://suo.im/)转换短址，区别如下：
+
+| 名称 | 短址示例       | 说明 |
+| -------- | -------------- | ---------- |
+| 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang) | api申请门槛高|
+| 京东短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
 
 ## 快速启动
 
@@ -95,13 +127,9 @@ python main.py
   ```
 ## 示例截图：
 
-![发送优惠券](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
+![发送淘宝优惠券](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
+![发送京东优惠券](https://github.com/why2lyj/youxiang/blob/master/images/jdyangli.jpg?raw=true)
 
-## 下一步功能：
-
-1. 接入京东联盟
-2. 群内广告直接踢
-  
 ## 声明
 
 **禁止将本工具用于商业用途**，如产生法律纠纷与本人无关。  

@@ -3,13 +3,14 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 from untils import config
 from coupon.tb import tb_share_text
+from coupon.jd import jingfen_query
 
 def job_tasks():
 
     scheduler = BackgroundScheduler(timezone="Asia/Shanghai")
 
     tb_job_tasks(scheduler)
-    # jd_job_task(scheduler)
+    jd_job_task(scheduler)
 
     # 加一个监控
     scheduler.add_listener(scheduler_listener, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
@@ -47,14 +48,16 @@ def  jd_job_task(scheduler):
         return
 
     app_key = conf.get('app_key')
-    appSecret = conf.get('appSecret')
+    app_secret = conf.get('app_secret')
     site_id = conf.get('')
     suo_im = conf.get('suo_im')
 
     chat_groups = conf.get('chat_groups')
     for chat_group in chat_groups:
         print(chat_group['group_name'])
-        scheduler.add_job(func=tb_share_text,
+        scheduler.add_job(func=jingfen_query,
+                          kwargs={'group_name': chat_group['group_name'], 'material_id': chat_group['group_material_id'],
+                                  'app_key': app_key, 'app_secret': app_secret, 'site_id': site_id, 'suo_im': suo_im},
                           trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, id=f'''{chat_group['group_name']}''')
 
     raise NotImplementedError

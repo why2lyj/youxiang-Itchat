@@ -226,8 +226,8 @@ def group_note_msg(msg):
 
         invite_list = scan_invite or others_invite
         if invite_list:
-            invite_name = invite_list[0][0]  # 加入者的昵称
-            inviter_name = invite_list[0][1]  # 邀请者的昵称
+            invite_name = invite_list[0][1]  # 加入者的昵称
+            inviter_name = invite_list[0][0]  # 邀请者的昵称
             time.sleep(random.randint(1, 2))
 
             note_invite_welcome = f'''@{invite_name}\u2005 \n欢迎加入群，请查看群规

@@ -66,17 +66,17 @@ def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key
             if lowest_price_type == 3:  # 秒杀
                 price = data['seckillInfo']['seckillOriPrice'] # 原价
                 lowest_price = data['priceInfo']['lowestCouponPrice'] # 秒杀价
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【秒杀】{sku_name}\n——————————\n  【原价】¥{price}\n 【券后秒杀价】¥{lowest_price}\n抢购地址：{duanzhi}'''
             elif lowest_price_type == 2: # 拼购
                 price = data['priceInfo']['price']  # 原价
                 lowest_price = data['priceInfo']['lowestCouponPrice']  # 用券拼购
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【拼购】{sku_name}\n——————————\n  【原价】¥{price}\n 【券后拼购价】¥{lowest_price}\n抢购地址：{duanzhi}'''
             else:
                 price = data['priceInfo']['price'] ## 商品价格
                 lowest_price = data['priceInfo']['lowestCouponPrice']
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【京东】{sku_name}\n——————————\n  【爆款价】¥{price}\n 【用卷价】¥{lowest_price}\n抢购地址：{duanzhi}'''
 
 
@@ -84,18 +84,18 @@ def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key
             if lowest_price_type == 3:  # 秒杀
                 price = data['seckillInfo']['seckillOriPrice']  # 原价
                 lowest_price = data['seckillInfo']['seckillPrice']  # 秒杀价
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【秒杀】{sku_name}\n——————————\n  【原价】¥{price}\n 【秒杀价】¥{lowest_price}\n抢购地址：{duanzhi}'''
 
             elif lowest_price_type == 2:  # 拼购
                 price = data['priceInfo']['price']  # 原价
                 lowest_price = data['priceInfo']['lowestPrice']  # 用券拼购
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【拼购】{sku_name}\n——————————\n  【原价】¥{price}\n 【拼购价】¥{lowest_price}\n抢购地址：{duanzhi}'''
             else:
                 lowest_price = data['priceInfo']['price']
                 # 得到短址
-                duanzhi = tb_share_text(material_url, coupon_link)
+                duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
                 share_text = f'''【京东】{sku_name}\n——————————\n 【爆款价】¥{lowest_price}\n抢购地址：{duanzhi}'''
 
         ## 获取 images

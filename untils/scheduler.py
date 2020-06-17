@@ -33,10 +33,10 @@ def tb_job_tasks(scheduler):
     chat_groups = conf.get('chat_groups')
     for chat_group in chat_groups:
         print(chat_group['group_name'])
-        scheduler.add_job(func=tb_share_text,
-                          kwargs={'group_name': chat_group['group_name'], 'material_id': chat_group['group_material_id'], 'app_key': app_key, 'app_secret': app_secret, 'adzone_id': adzone_id},
-                          trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, id=f'''{chat_group['group_name']}''')
-
+        scheduler.add_job(func=jingfen_query,
+                          kwargs={'group_name': chat_group['group_name'], 'group_material_id': chat_group['group_material_id'],
+                                  'app_key': app_key, 'secret_key': app_secret, 'site_id': site_id, 'suo_mi_token': suo_im},
+                          trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, 
 def  jd_job_task(scheduler):
 
     conf = config.get_yaml()
@@ -49,7 +49,7 @@ def  jd_job_task(scheduler):
 
     app_key = conf.get('app_key')
     app_secret = conf.get('app_secret')
-    site_id = conf.get('')
+    site_id = conf.get('site_id')
     suo_im = conf.get('suo_im')
 
     chat_groups = conf.get('chat_groups')

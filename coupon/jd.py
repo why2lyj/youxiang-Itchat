@@ -12,11 +12,13 @@ c)      如开通后2个自然月内如无返回数据，或月订单量达不�
 '''
 
 import random
+import time
 import json
 from untils.jd_api import JdApiClient
 from untils.suo_im import Suo_mi
 from untils.common import save_pic, del_pic
 import itchat
+from chat.itchatHelper import set_system_notice
 
 def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key:str, site_id:str, suo_mi_token:str):
     ''' 方法效率不咋地，不管了
@@ -24,39 +26,77 @@ def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key
     :return:
     '''
     info = []
-    page_no = str(random.randint(1, 25))
-    page_size = str(random.randint(3, 5))  # 不建议发很多，图片接口会跪
+    try:
+        page_no = str(random.randint(1, 25))
+        page_size = str(random.randint(3, 5))  # 不建议发很多，图片接口会跪
 
-    client = JdApiClient(app_key=app_key, secret_key=secret_key)
-    resp = client.call("jd.union.open.goods.jingfen.query",
-                       {"goodsReq":
-                            {"sort": "desc",
-                             "pageSize": page_size,
-                             "pageIndex": page_no,
-                             "eliteId": group_material_id
-                             }})
+        client = JdApiClient(app_key=app_key, secret_key=secret_key)
+        resp = client.call("jd.union.open.goods.jingfen.query",
+                           {"goodsReq":
+                                {"sort": "desc",
+                                 "pageSize": page_size,
+                                 "pageIndex": page_no,
+                                 "eliteId": group_material_id
+                                 }})
+    except Exception as e:
+        print(e)
+        set_system_notice(f'''page_no: {page_no},\npage_size:{page_size}\n, eliteId:{group_material_id}\n发现问题''')
+        jingfen_query(group_name, group_material_id, app_key, secret_key, site_id, suo_mi_token)
+
     # pprint.pprint(json.loads(resp.json()['jd_union_open_goods_jingfen_query_response']['result']))
     for data in json.loads(resp.json()['jd_union_open_goods_jingfen_query_response']['result'])['data']:
+        print(data)
         sku_name = data['skuName']   ## 商品全名
         sku_id = data['skuId']     ## 商品 sku
         material_url = f'''http://{(data['materialUrl'])}''' ## 商品url
 
         couponInfos = data['couponInfo'] ## 优惠券列表
         # 查找最优优惠券
+        coupon_link = ""
+        discount = 0
+        share_text = ""
+        lowest_price_type = data['priceInfo']['lowestPriceType']  ## 什么类型
+        is_coupon = False
         for couponInfo in couponInfos['couponList']:
             if int(couponInfo['isBest']) == 1:
                 discount = couponInfo['discount']  ## 优惠券额度
                 coupon_link = couponInfo['link']  ## 优惠券领取地址
+                is_coupon = True
+        if is_coupon: # 如果有券
+            if lowest_price_type == 3:  # 秒杀
+                price = data['seckillInfo']['seckillOriPrice'] # 原价
+                lowest_price = data['priceInfo']['lowestCouponPrice'] # 秒杀价
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【秒杀】{sku_name}\n——————————\n  【原价】¥{price}\n 【券后秒杀价】¥{lowest_price}\n抢购地址：{duanzhi}'''
+            elif lowest_price_type == 2: # 拼购
+                price = data['priceInfo']['price']  # 原价
+                lowest_price = data['priceInfo']['lowestCouponPrice']  # 用券拼购
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【拼购】{sku_name}\n——————————\n  【原价】¥{price}\n 【券后拼购价】¥{lowest_price}\n抢购地址：{duanzhi}'''
+            else:
+                price = data['priceInfo']['price'] ## 商品价格
+                lowest_price = data['priceInfo']['lowestCouponPrice']
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【京东】{sku_name}\n——————————\n  【爆款价】¥{price}\n 【用卷价】¥{lowest_price}\n抢购地址：{duanzhi}'''
 
-        price = data['priceInfo']['price'] ## 商品价格
-        lowest_coupon_price = data['priceInfo']['lowestCouponPrice']  ## 商品价格
 
-        # print(skuName)
-        # print(skuId)
-        # print(discount)
-        # print(coupon_link)
-        # print(price)
-        # print(materialUrl)
+        else: ## 如果没有券
+            if lowest_price_type == 3:  # 秒杀
+                price = data['seckillInfo']['seckillOriPrice']  # 原价
+                lowest_price = data['seckillInfo']['seckillPrice']  # 秒杀价
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【秒杀】{sku_name}\n——————————\n  【原价】¥{price}\n 【秒杀价】¥{lowest_price}\n抢购地址：{duanzhi}'''
+
+            elif lowest_price_type == 2:  # 拼购
+                price = data['priceInfo']['price']  # 原价
+                lowest_price = data['priceInfo']['lowestPrice']  # 用券拼购
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【拼购】{sku_name}\n——————————\n  【原价】¥{price}\n 【拼购价】¥{lowest_price}\n抢购地址：{duanzhi}'''
+            else:
+                lowest_price = data['priceInfo']['price']
+                # 得到短址
+                duanzhi = tb_share_text(material_url, coupon_link)
+                share_text = f'''【京东】{sku_name}\n——————————\n 【爆款价】¥{lowest_price}\n抢购地址：{duanzhi}'''
 
         ## 获取 images
         image_list = []
@@ -71,18 +111,15 @@ def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key
                 groups = itchat.search_chatrooms(name=f'''{group_name}''')
                 for room in groups:
                     room_name = room['UserName']
+                    time.sleep(random.randint(5,10))
                     itchat.send('@img@%s' % (f'''{filename}'''), room_name)
                 del_pic(filename)
                 # print(image_url)
 
-        # 得到短址
-        duanzhi = tb_share_text(app_key, secret_key, material_url, coupon_link, site_id, suo_mi_token)
-        # print(duanzhi)
-        share_text = f'''【京东】{sku_name}\n——————————\n  【原价】¥{price}\n 【爆款价】¥{lowest_coupon_price}\n抢购地址：{duanzhi}'''
-
         groups = itchat.search_chatrooms(name=f'''{group_name}''')
         for room in groups:
             room_name = room['UserName']
+            time.sleep(random.randint(3, 5))
             itchat.send(share_text, room_name)
 
 def tb_share_text(app_key, secret_key, material_url, coupon_url, site_id, suo_mi_token):
@@ -93,15 +130,28 @@ def tb_share_text(app_key, secret_key, material_url, coupon_url, site_id, suo_mi
     :param suo_mi_token: suo_mi网站的token
     :return: string ，返回一个suo_mi的短址
     '''
+    print(f'''{app_key}''')
+    print(f'''{secret_key}''')
+    print(f'''{material_url}''')
+    print(f'''{coupon_url}''')
+    print(f'''{site_id}''')
+    print(f'''{suo_mi_token}''')
     client = JdApiClient(app_key=app_key, secret_key=secret_key)
-
-    resp = client.call("jd.union.open.promotion.common.get",
-                       {"promotionCodeReq":
-                            {
-                             "siteId": site_id,
-                             "materialId": material_url,
-                             "couponUrl": coupon_url
-                             }})
+    if coupon_url == "":
+        resp = client.call("jd.union.open.promotion.common.get",
+                           {"promotionCodeReq":
+                                {
+                                 "siteId": site_id,
+                                 "materialId": material_url
+                                 }})
+    else:
+        resp = client.call("jd.union.open.promotion.common.get",
+                           {"promotionCodeReq":
+                                {
+                                 "siteId": site_id,
+                                 "materialId": material_url,
+                                 "couponUrl": coupon_url
+                                 }})
     x = json.loads(resp.json()['jd_union_open_promotion_common_get_response']['result'])['data']['clickURL']
 
     # 直接返回短址
@@ -110,4 +160,5 @@ def tb_share_text(app_key, secret_key, material_url, coupon_url, site_id, suo_mi
     return c
 
 if __name__ == '__main__':
-    jingfen_query()
+    pass
+    # jingfen_query()

@@ -132,3 +132,18 @@ class TbApiClient(object):
         tao_command = json.loads(res)['tbk_tpwd_create_response']['data']['model']
         return tao_command
 
+    def tkl_parser(self, tkl):
+        '''
+        :param tkl: str 淘口令，例如 ￥ABCDEFG￥
+        :return: str  返回自己的淘口令
+        '''
+        # 取值地址，接口地址
+        url = f'''http://www.taofake.com/index/tools/gettkljm.html?tkl={urllib.parse.quote(tkl)}'''
+        # 伪装定义浏览器header
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:23.0) Gecko/20100101 Firefox/23.0'}
+
+        request = urllib.request.Request(url=url, headers=headers)
+        response = urllib.request.urlopen(request)
+        data = response.read()
+        return self.taobao_tbk_tpwd_create(json.loads(data)['data']['content'], json.loads(data)['data']['url'])

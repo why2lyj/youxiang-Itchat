@@ -87,6 +87,8 @@
 | 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang) | api申请门槛高|
 | 京东短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
 
+苏宁易购api: （暂时放弃，token的授权需要付费服务的一个code，苏宁真是美，没撸一毛就想着赚我钱了，本着研究的态度，看经营状况再决定）
+
 ## 快速启动
 
 直接下载此项目或 clone 项目到本地。  

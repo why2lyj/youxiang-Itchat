@@ -68,12 +68,14 @@
 
 ## 前提准备
 
+---
 申请淘宝联盟api：
 [申请地址](https://pub.alimama.com/?spm=a219t.7664554.a214tr8.19.2f5835d9zBLGBR)
 [文档参考](https://open.taobao.com/doc.htm?docId=73&docType=1)
 
 努力看文档操作，获取到 `App Key` 和 `App Secret`，同时利用商品推广得到 广告位 `adzone_id`
 
+---
 申请京东联盟api：
 [申请地址](https://union.jd.com/)
 [文档参考](https://union.jd.com/helpcenter/13246-13247-46301)
@@ -87,7 +89,10 @@
 | 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang) | api申请门槛高|
 | 京东短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
 
-苏宁易购api: （暂时放弃，token的授权需要付费服务的一个code，苏宁真是美，没撸一毛就想着赚我钱了，本着研究的态度，看经营状况再决定）
+*关于短址：建议选择微信或腾讯的短址服务进行转换以免被屏，没用的另外原因是没有相关token，其他网络上的api没有遇到合适的。*
+
+---
+苏宁易购api: （放弃，苏宁要求仅注册资金在50w以上的企业客户可以调用api且token的授权需要付费服务的一个code）
 
 ## 快速启动
 

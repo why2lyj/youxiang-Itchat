@@ -75,6 +75,18 @@ def save_pic(img_url, item_id):
 def del_pic(filename):
     os.remove(filename)
 
+def short_2_long(short_url: str) -> str:
+    '''
+    短址还原
+    :param short_url: str 短址
+    :return: str, 真实地址
+    '''
+    req = urllib.request.Request(short_url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko')
+    response = urllib.request.urlopen(req)
+    dlurl = response.geturl()  # 跳转后的真实下载链接
+    return dlurl
+
 if __name__ == '__main__':
     print(md5_encode('aeryou'))
     pass

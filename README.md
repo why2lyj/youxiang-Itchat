@@ -50,13 +50,28 @@
 | -------- | -------------- | ---------- |---------- |
 | is_open | True/False | 必填 | 是否开启京东联盟推广|
 | app_key | 京东联盟 app_key | 必填 | 京东联盟申请下来的 app_key |
-| app_secret | 淘宝联盟 app_secret | 必填 | 京东联盟申请下来的 app_secret |
+| app_secret | 京东联盟 app_secret | 必填 | 京东联盟申请下来的 app_secret |
 | site_id | 京东联盟网站id或app id | 必填 | 京东联网站id或app id |
 | chat_groups |  | 必填 | 详情见举例 |
 | group_name | 群名称 | 必填 | 对应微信群的群名称 |
 | group_material_id | 物料id | 必填 | 京东联盟物料id|
 | minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
 | hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
+
+多多进宝
+
+| 名称 | 示例       | 必填 | 说明 |
+| -------- | -------------- | ---------- |---------- |
+| is_open | True/False | 必填 | 是否开启拼多多推广|
+| app_key | 拼多多 Client_id | 必填 | 拼多多申请下来的 Client_id |
+| app_secret | 拼多多 Client_secret | 必填 | 拼多多申请下来的 Client_secret |
+| site_id | 推广位 | 必填 | 利用拼多多[接口](https://open.pinduoduo.com/application/document/apiTools?scopeName=pdd.ddk.goods.pid.generate&catId=12)得到的推广位`pid` |
+| chat_groups |  | 必填 | 详情见举例 |
+| group_name | 群名称 | 必填 | 对应微信群的群名称 |
+| group_material_id | 物料id | 必填 | 拼多多物料id|
+| minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
+| hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
+
 
 **”实例1**，每天7点到23点，每小时的第10分，第40分，将淘宝物料id:19810，发送至群聊 <口碑KFC必胜客麦当劳优惠券>：
 > {group_name: '口碑KFC必胜客麦当劳优惠券', group_material_id: '19810', minute: '10,40', hour: '7-23'}
@@ -92,7 +107,14 @@
 *关于短址：建议选择微信或腾讯的短址服务进行转换以免被屏，没用的另外原因是没有相关token，其他网络上的api没有遇到合适的。*
 
 ---
-苏宁易购api: （放弃，苏宁要求仅注册资金在50w以上的企业客户可以调用api且token的授权需要付费服务的一个code）
+申请苏宁易购api: （放弃，苏宁要求仅注册资金在50w以上的企业客户可以调用api且token的授权需要付费服务的一个code）
+
+--- 
+申请拼多多(多多客)api：
+
+首先去拼多多开放平台申请一个应用 [申请地址](https://open.pinduoduo.com/)，得到`Client_id`和`Client_secret`，然后去多多进宝绑定`Client_id`后可以调用接口[接口文档](https://jinbao.pinduoduo.com/third-party/rank)，利用接口得到推广位`pid`
+
+*拼多多接口每天调用仅5000次*
 
 ## 快速启动
 

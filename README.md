@@ -154,9 +154,20 @@ python main.py
   docker run -it -d -v $pwd:/youxiang --name youxiang youxiang:1.0.0
   ```
 ## 示例截图：
+---
+淘宝：
 
-![发送淘宝优惠券](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
-![发送京东优惠券](https://github.com/why2lyj/youxiang/blob/master/images/jdyangli.jpg?raw=true)
+![发送淘宝优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
+
+---
+京东：
+
+![发送京东优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/jdyangli.jpg?raw=true)
+
+---
+拼多多：
+
+![发送拼多多优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/pddyangli.jpg?raw=true)
 
 ## 声明
 

@@ -32,13 +32,17 @@ def pdd_share_text(group_name: str, group_material_id: str, app_key:str, secret_
         goods_name = data['goods_name']
         search_id = data['search_id']
         goods_thumbnail_url = data['goods_thumbnail_url']
-        min_normal_price = int(data['min_normal_price']) # 现价
+        min_normal_price = int(data['min_normal_price']) # 原价
+        min_group_price = int(data['min_group_price']) # 折扣价
+        if min_group_price < min_normal_price:
+            cal_price = min_group_price
         coupon_discount = int(data['coupon_discount']) # 券价
-        min_normal_price_str = str(min_normal_price)[:len(str(min_normal_price))-2] + '.' + str(min_normal_price)[len(str(min_normal_price))-2:]
-        price = str(min_normal_price - coupon_discount)[:len(str(min_normal_price - coupon_discount))-2] + '.' \
-                + str(min_normal_price - coupon_discount)[len(str(min_normal_price - coupon_discount))-2:]
+        cal_price_str = str(min_normal_price)[:len(str(min_normal_price))-2] + '.' + str(min_normal_price)[len(str(min_normal_price))-2:]
+        price = str(cal_price - coupon_discount)[:len(str(cal_price - coupon_discount))-2] + '.' \
+                + str(cal_price - coupon_discount)[len(str(cal_price - coupon_discount))-2:]
         short_url = promotion_url_generate(app_key=app_key, secret_key=secret_key, p_id=p_id, goods_id_list=int(goods_id), search_id= search_id)
 
+        print(f''' {goods_name} \n【现价】¥{cal_price_str}\n【内部价】¥{price}\n-----------------\n抢购地址: \n{short_url}''')
         groups = itchat.search_chatrooms(name=f'''{group_name}''')
         for room in groups:
             group_name = room['UserName']
@@ -47,9 +51,8 @@ def pdd_share_text(group_name: str, group_material_id: str, app_key:str, secret_
             # 发送图片
             itchat.send('@img@%s' % (f'''{filename}'''), group_name)
             time.sleep(random.randint(1, 3))
-            itchat.send(f''' {goods_name} \n【在售价】¥{min_normal_price_str}\n【券后价】¥{price}\n-----------------\n抢购地址:\n{short_url}''', group_name)
+            itchat.send(f''' {goods_name} \n【原价】¥{min_normal_price_str}\n【内部价】¥{price}\n-----------------\n抢购地址{short_url}''', group_name)
             del_pic(filename)
-
 
 def promotion_url_generate(app_key:str, secret_key:str, p_id: str, goods_id_list: int, search_id:str):
     client = PddApiClient(app_key=app_key, secret_key=secret_key)
@@ -59,7 +62,7 @@ def promotion_url_generate(app_key:str, secret_key:str, p_id: str, goods_id_list
                         "p_id": p_id
                         })
     try:
-        short_url = json.loads(resp.text)['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]['short_url']
+        short_url = json.loads(resp.text)['goods_promotion_url_generate_response']['goods_promotion_url_list'][0]['mobile_short_url']
     except Exception as e:
         print(e)
         set_system_notice(f'''goods_id_list: {goods_id_list},\nsearch_id:{search_id}\np_id:{p_id}\n\n无法获取连接''')

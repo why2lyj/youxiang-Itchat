@@ -58,7 +58,7 @@
 | minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
 | hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
 
-多多进宝
+拼多多（多多进宝、多多客）
 
 | 名称 | 示例       | 必填 | 说明 |
 | -------- | -------------- | ---------- |---------- |
@@ -68,10 +68,9 @@
 | site_id | 推广位 | 必填 | 利用拼多多[接口](https://open.pinduoduo.com/application/document/apiTools?scopeName=pdd.ddk.goods.pid.generate&catId=12)得到的推广位`pid` |
 | chat_groups |  | 必填 | 详情见举例 |
 | group_name | 群名称 | 必填 | 对应微信群的群名称 |
-| group_material_id | 物料id | 必填 | 拼多多物料id|
+| group_material_id | 栏目 | 非必填 | 保留字段，底层无用|
 | minute | 分钟 | 必填 | 定时任务对应的分钟，逗号分隔，注意空格 |
 | hour | 小时 | 必填 | 定时任务对应的小时，逗号分隔，注意空格 |
-
 
 **”实例1**，每天7点到23点，每小时的第10分，第40分，将淘宝物料id:19810，发送至群聊 <口碑KFC必胜客麦当劳优惠券>：
 > {group_name: '口碑KFC必胜客麦当劳优惠券', group_material_id: '19810', minute: '10,40', hour: '7-23'}

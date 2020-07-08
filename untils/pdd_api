@@ -1,9 +1,8 @@
 import requests
 import hashlib
-import json
 import time
 
-PDD_API_ROOT = 'http://gw-api.pinduoduo.com/api/router'
+PDD_API_ROOT = 'https://gw-api.pinduoduo.com/api/router'
 
 class PddApiClient(object):
     def __init__(self, app_key, secret_key):
@@ -18,20 +17,19 @@ class PddApiClient(object):
 
     def call(self, method, param_json, **kwargs):
         params = {
-            "version": "V1",
             "type": method,
+            "data_type": "JSON",
             "client_id": self.app_key,
             "timestamp": int(time.time()),
-            "data_type": "JSON"
         }
         if isinstance(param_json, (dict, list)):
-            params["param_json"] = json.dumps(param_json)
-        else:
-            params["param_json"] = param_json
+            for key in param_json:
+                params[key] = param_json[key]
         params['sign'] = self.get_sign(params)
         resp = requests.get(PDD_API_ROOT, params=params, **kwargs)
+        print(resp.url)
         return resp
-
+        
 if __name__ == '__main__':
     pass
     # pdd = PddApiClient(app_key='', secret_key='')

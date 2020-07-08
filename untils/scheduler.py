@@ -60,8 +60,6 @@ def  jd_job_task(scheduler):
                                   'app_key': app_key, 'app_secret': app_secret, 'site_id': site_id, 'suo_im': suo_im},
                           trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, id=f'''{chat_group['group_name']}''')
 
-    raise NotImplementedError
-
 def scheduler_listener(event):
     '''
     监听程序，如果发现错误程序终止

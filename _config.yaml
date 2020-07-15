@@ -102,6 +102,13 @@ pinduoduo:
   p_id: ''
   chat_groups:
     - {group_name: '拼多多内部优惠群①', group_material_id: '1,2', minute: '0,30', hour: '7-23'}
-    
+
+suning:
+  is_open: False
+  app_key: ''
+  app_secret: ''
+  ad_book_id: ''
+  chat_groups:
+    - {group_name: '苏宁内部优惠群', group_material_id: '2179', minute: '5,35', hour: '7-23'}
 #--------------------------- 推广客设置  --------------------------end
 

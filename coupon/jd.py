@@ -152,8 +152,11 @@ def tb_share_text(app_key, secret_key, material_url, coupon_url, site_id, suo_mi
                                  "materialId": material_url,
                                  "couponUrl": coupon_url
                                  }})
-    x = json.loads(resp.json()['jd_union_open_promotion_common_get_response']['result'])['data']['clickURL']
-
+    try:
+        x = json.loads(resp.json()['jd_union_open_promotion_common_get_response']['result'])['data']['clickURL']
+    except Exception as e:
+        print(f'''转码异常：{resp.json()}\n material_url: {material_url} \n coupon_url: {coupon_url}''')
+        x = material_url
     # 直接返回短址
     url = x
     c = Suo_mi(app_key=suo_mi_token).get_short_url(url)

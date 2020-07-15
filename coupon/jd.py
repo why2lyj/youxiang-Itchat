@@ -58,10 +58,16 @@ def jingfen_query(group_name:str, group_material_id:str, app_key:str, secret_key
         lowest_price_type = data['priceInfo']['lowestPriceType']  ## 什么类型
         is_coupon = False
         for couponInfo in couponInfos['couponList']:
-            if int(couponInfo['isBest']) == 1:
+            if 'isBest' in couponInfo:
+                if int(couponInfo['isBest']) == 1:
+                    discount = couponInfo['discount']  ## 优惠券额度
+                    coupon_link = couponInfo['link']  ## 优惠券领取地址
+                    is_coupon = True
+            else:
                 discount = couponInfo['discount']  ## 优惠券额度
                 coupon_link = couponInfo['link']  ## 优惠券领取地址
                 is_coupon = True
+                
         if is_coupon: # 如果有券
             if lowest_price_type == 3:  # 秒杀
                 price = data['seckillInfo']['seckillOriPrice'] # 原价

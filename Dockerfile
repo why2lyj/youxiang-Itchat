@@ -1,12 +1,14 @@
-# 说明该镜像以哪个镜像为基础
 FROM python:3.7-slim
 
-RUN mkdir /youxiang
+MAINTAINER Snow Wang <admin@farseer.vip>
+
 WORKDIR /youxiang
-
 COPY requirements.txt requirements.txt
-
-RUN pip install -r requirements.txt
 COPY . /youxiang
 
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone && \
+    mkdir /youxiang && \
+    pip install -r requirements.txt
+    
 ENTRYPOINT ["python", "/youxiang/main.py"]

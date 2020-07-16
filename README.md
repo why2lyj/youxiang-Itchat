@@ -126,7 +126,7 @@
 ---
 申请苏宁易购api: 
 
-[苏宁联盟开放平台API接入操作指导2.7-20200526.pdf](https://github.com/why2lyj/youxiang/blob/master/images/苏宁联盟开放平台API接入操作指导2.7.pdf?raw=true)
+[苏宁联盟开放平台API接入操作指导2.7-20200526.pdf](https://github.com/why2lyj/youxiang/raw/master/images/%E8%8B%8F%E5%AE%81%E8%81%94%E7%9B%9F%E5%BC%80%E6%94%BE%E5%B9%B3%E5%8F%B0API%E6%8E%A5%E5%85%A5%E6%93%8D%E4%BD%9C%E6%8C%87%E5%AF%BC2.7.pdf)
 
 --- 
 申请拼多多(多多客)api：

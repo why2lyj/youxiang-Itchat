@@ -27,7 +27,7 @@ def tb_job_tasks(scheduler):
     if not conf.get('is_open'):
         return
 
-    if conf.get('app_key') =='' or conf.get('appSecret') =='' or conf.get('adzone_id') =='':
+    if conf.get('app_key') =='' or conf.get('app_secret') =='' or conf.get('adzone_id') =='':
         return
 
     app_key = conf.get('app_key')
@@ -37,11 +37,11 @@ def tb_job_tasks(scheduler):
     chat_groups = conf.get('chat_groups')
     for chat_group in chat_groups:
         print(chat_group['group_name'])
-        scheduler.add_job(func=jingfen_query,
-                          kwargs={'group_name': chat_group['group_name'], 'group_material_id': chat_group['group_material_id'],
-                                  'app_key': app_key, 'secret_key': app_secret, 'site_id': site_id, 'suo_mi_token': suo_im},
-                          trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, 
-def  jd_job_task(scheduler):
+        scheduler.add_job(func=tb_share_text,
+                          kwargs={'group_name': chat_group['group_name'], 'material_id': chat_group['group_material_id'],
+                                  'app_key': app_key, 'app_secret': app_secret, 'adzone_id': adzone_id},
+                          trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, id=f'''{chat_group['group_name']}''')
+def jd_job_task(scheduler):
 
     conf = config.get_yaml()
     conf = conf.get('jingdong')
@@ -60,10 +60,9 @@ def  jd_job_task(scheduler):
     for chat_group in chat_groups:
         print(chat_group['group_name'])
         scheduler.add_job(func=jingfen_query,
-                          kwargs={'group_name': chat_group['group_name'], 'material_id': chat_group['group_material_id'],
-                                  'app_key': app_key, 'app_secret': app_secret, 'site_id': site_id, 'suo_im': suo_im},
+                          kwargs={'group_name': chat_group['group_name'], 'group_material_id': chat_group['group_material_id'],
+                                  'app_key': app_key, 'secret_key': app_secret, 'site_id': site_id, 'suo_mi_token': suo_im},
                           trigger='cron', hour=f'''{chat_group['hour']}''', minute=f'''{chat_group['minute']}''', second=0,  jitter=300, id=f'''{chat_group['group_name']}''')
-
 
 def pdd_job_task(scheduler):
 

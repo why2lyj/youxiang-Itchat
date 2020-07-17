@@ -190,7 +190,7 @@ python main.py
 ![发送拼多多优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/pddyangli.jpg?raw=true)
 
 ---
-拼多多：
+苏宁易购：
 
 ![发送苏宁优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/suningyangli.jpg?raw=true)
 

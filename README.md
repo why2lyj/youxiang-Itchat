@@ -189,6 +189,11 @@ python main.py
 
 ![发送拼多多优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/pddyangli.jpg?raw=true)
 
+---
+拼多多：
+
+![发送苏宁优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/suningyangli.jpg?raw=true)
+
 ## 声明
 
 **禁止将本工具用于商业用途**，如产生法律纠纷与本人无关。  

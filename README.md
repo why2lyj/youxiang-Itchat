@@ -146,7 +146,7 @@
 
 吐槽下唯品会，申请贼费劲，审核极慢，提交申请近一个月，才有回复。最后是加了一位唯品会内部负责人的微信才问明白。
 
-作者没有工商营业执照，所以...
+作者没有工商营业执照，所以...也不打算继续处理唯品会了。
 
 ## 快速启动
 
@@ -217,3 +217,6 @@ python main.py
 - [EverydayWechat](https://github.com/sfyc23/EverydayWechat)
 - [python 淘宝OPEN API 调用示例](https://www.jianshu.com/p/f9b5e3020789)
 
+## 最后最后最后还是建个群什么的做下交流。留个二维码。
+
+![加不加随意](https://github.com/why2lyj/youxiang/blob/master/images/6050dfdc-dfef-43c0-94b8-33148f6f5bd8.jpg?raw=true)

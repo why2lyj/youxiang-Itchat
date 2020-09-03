@@ -3,7 +3,6 @@
  [![EverydayWechat](https://img.shields.io/badge/sfyc23/Powered%20By-EverydayWechat-brightgreen.svg)](https://github.com/sfyc23/EverydayWechat/)
  [![GitHub issues](https://img.shields.io/github/issues/why2lyj/youxiang.svg)](https://github.com/why2lyj/youxiang/issues)
  
- 
 ## 项目背景
 
 无非就是想撸羊毛，自己又懒的一个一个找，一个一个发。已知目前的返佣app非常的多，比如：好省，蜜源，粉象，芬香等等等等。归根到底无非是利用淘宝、京东、拼多多、苏宁的开放平台做的。所以想到是否可以利用已有的开放平台来做一个属于自己的撸羊毛项目。
@@ -231,3 +230,6 @@ python main.py
 
 备注写【github】，否则不同过哦。
 ![加不加随意](https://github.com/why2lyj/youxiang/blob/master/images/6050dfdc-dfef-43c0-94b8-33148f6f5bd8.jpg?raw=true)
+
+## 加个starchart
+ [![Stargazers over time](https://starchart.cc/why2lyj/youxiang.svg)](https://starchart.cc/why2lyj/youxiang)

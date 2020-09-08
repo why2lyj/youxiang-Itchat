@@ -31,11 +31,15 @@
    
 ## 对于微信Web端无法登陆的小伙伴请注意
 
-推荐使用`wechaty`，详情请访问：https://wechaty.js.org/ ，这是市面上唯一一家提供终身免费`token`服务的微信机器人供应商。
+由于使用的是Itchat框架，此框架仅支持还能用web版微信的人，如web版本微信已经无法使用，本项目无法继续操作。
+
+如果您需要制作自己的微信机器人，推荐使用`wechaty`，详情请访问：https://wechaty.js.org/ ，这是市面上唯一一家提供终身免费`token`服务的微信机器人供应商。
 
 其公司句子科技对于的贡献者会提供免费的`token`，对于开发级贡献者同时会提供专有服务器；如果懒，付费我也不拦着，付费`token`200/月/号。
 
-本项目已完成`python-wechaty`版本迁移。代码私有，不再公开。如有需要，请主动扫描本页最后的二维码与作者联系。
+本项目已完成`python-wechaty`版本迁移。代码私有，不再公开。
+
+如有需要帮助，请主动扫描本页最后的二维码与作者联系。
 
 ## 配置信息
 
@@ -110,6 +114,11 @@
 ## 前提准备
 
 ---
+
+要使用淘宝联盟的api，需要三个东西：`App Key` ， `App Secret`，广告位`adzone_id`
+
+申请参考：
+
 申请淘宝联盟api：
 [申请地址](https://pub.alimama.com/?spm=a219t.7664554.a214tr8.19.2f5835d9zBLGBR)
 [文档参考](https://open.taobao.com/doc.htm?docId=73&docType=1)
@@ -117,6 +126,11 @@
 努力看文档操作，获取到 `App Key` 和 `App Secret`，同时利用商品推广得到 广告位 `adzone_id`
 
 ---
+
+要使用京东联盟api，需要`App Key` ， `App Secret`，站点ID`siteId`，还有一个suowo的`token`
+
+申请参考：
+
 申请京东联盟api：
 [申请地址](https://union.jd.com/)
 [文档参考](https://union.jd.com/helpcenter/13246-13247-46301)
@@ -133,11 +147,15 @@
 *关于短址：建议选择微信或腾讯的短址服务进行转换以免被屏，没用的另外原因是没有相关token，其他网络上的api没有遇到合适的。*
 
 ---
-申请苏宁易购api: 
+
+申请苏宁易购的api请直接参考以下文档，文档来自苏宁联盟的接口人： 
 
 [苏宁联盟开放平台API接入操作指导2.7-20200526.pdf](images/苏宁联盟开放平台API接入操作指导2.7.pdf)
 
 --- 
+
+申请拼多多api接口，需要`Client_id`，`Client_secret`，推广位`pid`
+
 申请拼多多(多多客)api：
 
 首先去拼多多开放平台申请一个应用 [申请地址](https://open.pinduoduo.com/)，得到`Client_id`和`Client_secret`，然后去多多进宝绑定`Client_id`后可以调用接口[接口文档](https://jinbao.pinduoduo.com/third-party/rank)，利用接口得到推广位`pid`
@@ -147,7 +165,7 @@
 --- 
 申请唯品会api：
 
-申请唯品会只能是机构账户，机构账户的申请需要工商营业执照。如果没有营业执照的小伙伴，去 [订单侠](https://www.dingdanxia.com/)申请调用api，这个是唯品会官方建议的。
+申请唯品会只能是机构账户，机构账户的申请需要工商营业执照。如果没有营业执照的小伙伴，去[订单侠](https://www.dingdanxia.com/)申请调用api，这个是唯品会官方建议的。
 
 如果你有工商营业执照，请查看文档继续申请[唯品会联盟API接入流程文档v1.9.pdf](images/唯品会联盟API接入流程文档v1.9.pdf)
 
@@ -231,5 +249,5 @@ python main.py
 备注写【github】，否则不同过哦。
 ![加不加随意](https://github.com/why2lyj/youxiang/blob/master/images/6050dfdc-dfef-43c0-94b8-33148f6f5bd8.jpg?raw=true)
 
-## 加个starchart
+## 加个starchart，在此感谢您能够专心致志的读到这里，给项目点个赞吧~
  [![Stargazers over time](https://starchart.cc/why2lyj/youxiang.svg)](https://starchart.cc/why2lyj/youxiang)

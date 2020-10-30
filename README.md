@@ -138,14 +138,16 @@
 
 要使用京东联盟获取推广优惠券需要有siteId(站点ID是指在联盟后台的推广管理中的网站Id、APPID)，此申请需要网站备案或有实际app。如没有尽早申请。
 
-另外由于京东联盟生成短址的接口需要申请，申请资质要求（[参考](https://union.jd.com/helpcenter/13246-13247-46301)）目前非力所能及，故采用[suo.mi](http://suo.im/)转换短址，区别如下：
+另外由于京东联盟生成短址的接口需要申请，申请资质要求（[参考](https://union.jd.com/helpcenter/13246-13247-46301)）目前非力所能及，故采用[suo.mi](https://suowo.cn/)转换短址，区别如下：
 
 | 名称 | 短址示例       | 说明 |
 | -------- | -------------- | ---------- |
 | 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang) | api申请门槛高|
-| 京东短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
+| 缩我短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
 
 *关于短址：建议选择微信或腾讯的短址服务进行转换以免被屏，没用的另外原因是没有相关token，其他网络上的api没有遇到合适的。*
+
+*缩我短址在2020年7月更变域名suowo.cn，原有suo.mi依然可用，所以作者并无相关代码更变*
 
 ---
 

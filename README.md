@@ -37,6 +37,8 @@
 目前无法利用 Itchat 框架使用 web 协议的小伙伴请主动尝试使用开源框架 python-wechaty, 该开源框架可绕过 web 协议限制，详情查看
 https://wechaty.js.org/2021/04/17/python-wechaty-use-web/
 
+python-wechaty 版本即将在后续开源，还请各位耐心等待
+
 如有需要帮助，请主动扫描本页最后的二维码与作者联系。
 
 ## 配置信息

@@ -32,14 +32,7 @@
    
 ## 对于微信Web端无法登陆的小伙伴请注意
 
-由于使用的是Itchat框架，此框架仅支持还能用web版微信的人，如web版本微信已经无法使用，本项目无法继续操作。
-
-目前无法利用 Itchat 框架使用 web 协议的小伙伴请主动尝试使用开源框架 python-wechaty, 该开源框架可绕过 web 协议限制，详情查看
-https://wechaty.js.org/2021/04/17/python-wechaty-use-web/
-
-python-wechaty 版本即将在后续开源，还请各位耐心等待
-
-如有需要帮助，请主动扫描本页最后的二维码与作者联系。
+请使用 ```pip install itchat-uos``` 更新后，web版本可用。
 
 ## 配置信息
 

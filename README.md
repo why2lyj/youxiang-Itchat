@@ -1,5 +1,5 @@
  [![Python 3.7](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/release/python-370/)
- [![itchat_vesion](https://img.shields.io/badge/Itchat-1.3.10-brightgreen.svg)](https://github.com/why2lyj/ItChat-UOS)
+ [![itchat_vesion](https://img.shields.io/badge/itchat--uos-1.4.1-green)](https://github.com/why2lyj/ItChat-UOS)
  [![EverydayWechat](https://img.shields.io/badge/sfyc23/Powered%20By-EverydayWechat-brightgreen.svg)](https://github.com/sfyc23/EverydayWechat/)
  [![GitHub issues](https://img.shields.io/github/issues/why2lyj/youxiang.svg)](https://github.com/why2lyj/youxiang/issues)
  [![Page Views Count](https://badges.toozhao.com/badges/01EJD3TT6C1J7T283S3A3JZGE3/green.svg)](https://badges.toozhao.com/badges/01EJD3TT6C1J7T283S3A3JZGE3/green.svg)

@@ -34,6 +34,8 @@
 
 请使用 ```pip install itchat-uos``` 更新后，web版本可用。
 
+如手机确认登陆后出现 'wxsid' 登陆失败的字样，请将微信绑定手机号，绑定银行卡后再进行重试。
+
 ## 配置信息
 
 仅介绍**推广客设置**，其余配置请参考[EverydayWechat](https://github.com/sfyc23/EverydayWechat)，不做多余赘述。

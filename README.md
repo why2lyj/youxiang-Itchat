@@ -36,6 +36,10 @@
 
 如手机确认登陆后出现 'wxsid' 登陆失败的字样，请将微信绑定手机号，绑定银行卡后再进行重试。
 
+如果依然不可使用，请下载[统信UOS系统](https://www.7uos.com/uos-download)，利用统信UOS系统的Web版本微信登陆一次。
+
+若登陆成功即可使用本项目。若登陆不成功，请根据相关提示进行修正，直至登陆成功。
+
 ## 配置信息
 
 仅介绍**推广客设置**，其余配置请参考[EverydayWechat](https://github.com/sfyc23/EverydayWechat)，不做多余赘述。

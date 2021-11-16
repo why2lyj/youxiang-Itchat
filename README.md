@@ -198,9 +198,9 @@ python main.py
 
 如果你想使用docker启动（请确保`_config.yaml`文件已改成指定）
 
-1. 首先创建镜像，运行
+1. 首先创建镜像（请确保在项目所在目录中运行），执行
    ```shell
-   docker build -f Dockerfile -t youxiang:v1.0.0
+   docker build -f Dockerfile -t youxiang:v1.0.0 .
    ```
    
 2. 启动容器，运行

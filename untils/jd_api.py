@@ -3,7 +3,7 @@ import requests
 import hashlib
 import json
 
-JD_API_ROOT = 'https://router.jd.com/api'
+JD_API_ROOT = 'https://api.jd.com/routerjson'
 
 class JdApiClient(object):
     def __init__(self, app_key, secret_key):

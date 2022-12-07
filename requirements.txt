@@ -5,5 +5,5 @@ selenium
 itchat-uos==1.5.0.dev
 pandas==0.24.2
 pyzbar==0.1.8
-Pillow==8.3.2
+Pillow==9.3.0
 suning-sdk==1.0.0

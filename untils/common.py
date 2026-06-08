@@ -10,6 +10,7 @@ import urllib.request
 import datetime
 import sys
 import tempfile
+import shutil
 from urllib.parse import urlparse
 
 __all__ = [
@@ -19,6 +20,7 @@ __all__ = [
 FILEHELPER_MARK = ['文件传输助手', 'filehelper']  # 文件传输助手标识
 FILEHELPER = 'filehelper'
 PIC_DIR = os.path.join(tempfile.gettempdir(), 'youxiang-itchat')
+IMAGE_DOWNLOAD_TIMEOUT = 20
 
 def is_json(resp):
     """
@@ -58,6 +60,7 @@ def save_pic(img_url, item_id):
     :param item_id:  物料id，仅限用于图片命名
     :return: filename str, 返回一个图片名称，用来定位删除的。
     '''
+    filename = None
     try:
         os.makedirs(PIC_DIR, exist_ok=True)
         file_suffix = get_url_suffix(img_url)
@@ -69,13 +72,20 @@ def save_pic(img_url, item_id):
         )
         # print(filename)
         # 下载图片，并保存到文件夹中
-        urllib.request.urlretrieve(img_url, filename=filename)
+        request = urllib.request.Request(str(img_url), headers={
+            'User-Agent': 'Mozilla/5.0',
+        })
+        with urllib.request.urlopen(request, timeout=IMAGE_DOWNLOAD_TIMEOUT) as response:
+            with open(filename, 'wb') as file:
+                shutil.copyfileobj(response, file)
         print(f'''图片下载成功：{filename}''')
         return filename
     except IOError as e:
+        del_pic(filename)
         print(e)
         return
     except Exception as e:
+        del_pic(filename)
         print(e)
         return
 

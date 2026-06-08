@@ -146,7 +146,13 @@ def build_job_kwargs(platform_job: PlatformJob, platform_conf: Dict, chat_group:
 
 
 def build_job_id(platform_name: str, chat_group: Dict) -> str:
-    return "{}:{}".format(platform_name, chat_group["group_name"])
+    return "{}:{}:{}:{}:{}".format(
+        platform_name,
+        chat_group["group_name"],
+        chat_group["group_material_id"],
+        chat_group["hour"],
+        chat_group["minute"],
+    )
 
 
 def resolve_task(task_path: str):

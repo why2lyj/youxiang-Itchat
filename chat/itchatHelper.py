@@ -229,7 +229,10 @@ def log_all_config():
                     nicknames.append(auid)
                 else:
                     friends = itchat.search_friends(userName=auid)
-                    nickname = friends.nickName
+                    if friends:
+                        nickname = friends[0]['NickName']
+                    else:
+                        nickname = "未知好友"
                     nicknames.append(nickname)
             nns = '，'.join(nicknames)
             print('开启对全部微信好友全部回复，除了：{}'.format(nns))
@@ -241,7 +244,10 @@ def log_all_config():
                     nicknames.append(auid)
                 else:
                     friends = itchat.search_friends(userName=auid)
-                    nickname = friends.nickName
+                    if friends:
+                        nickname = friends[0]['NickName']
+                    else:
+                        nickname = "未知好友"
                     nicknames.append(nickname)
             nns = '，'.join(nicknames)
             print('对微信好友 {}，进行自动回复'.format(nns))

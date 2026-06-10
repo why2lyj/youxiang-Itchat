@@ -120,7 +120,7 @@ def handle_groups_message(msg):
                     return
 
     # 未开启回复所有群，而群组不是白名单，不处理消息
-    in_white_flag = False
+    in_white_flag = is_all
     if not is_all:
         for group_name in group_uuids:
             chatrooms = itchat.search_chatrooms(name=f'''{group_name}''')

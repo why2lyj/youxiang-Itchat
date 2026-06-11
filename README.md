@@ -1,7 +1,7 @@
  [![Python 3.13](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/release/python-3130/)
  [![itchat_vesion](https://img.shields.io/badge/itchat--uos-1.5.0dev-green)](https://github.com/why2lyj/ItChat-UOS)
  [![EverydayWechat](https://img.shields.io/badge/sfyc23/Powered%20By-EverydayWechat-brightgreen.svg)](https://github.com/sfyc23/EverydayWechat/)
- [![GitHub issues](https://img.shields.io/github/issues/why2lyj/youxiang.svg)](https://github.com/why2lyj/youxiang/issues)
+ [![GitHub issues](https://img.shields.io/github/issues/why2lyj/youxiang-Itchat.svg)](https://github.com/why2lyj/youxiang-Itchat/issues)
  [![Page Views Count](https://hits.sh/github.com/why2lyj/youxiang-Itchat.svg?label=Page%20Views&color=green)](https://hits.sh/github.com/why2lyj/youxiang-Itchat/)
  
 ## 项目背景
@@ -134,8 +134,8 @@
 
 | 名称 | 短址示例       | 说明 |
 | -------- | -------------- | ---------- |
-| 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang) | api申请门槛高|
-| 缩我短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang) | 门槛低，免费|
+| 京东短址 | [http://u.jd.com/XXXX](https://github.com/why2lyj/youxiang-Itchat) | api申请门槛高|
+| 缩我短址 | [http://suo.mi/XXXX](https://github.com/why2lyj/youxiang-Itchat) | 门槛低，免费|
 
 *关于短址：建议选择微信或腾讯的短址服务进行转换以免被屏，没用的另外原因是没有相关token，其他网络上的api没有遇到合适的。*
 
@@ -212,22 +212,22 @@ python main.py
 ---
 淘宝：
 
-![发送淘宝优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/yangli.jpg?raw=true)
+![发送淘宝优惠信息](images/yangli.jpg)
 
 ---
 京东：
 
-![发送京东优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/jdyangli.jpg?raw=true)
+![发送京东优惠信息](images/jdyangli.jpg)
 
 ---
 拼多多：
 
-![发送拼多多优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/pddyangli.jpg?raw=true)
+![发送拼多多优惠信息](images/pddyangli.jpg)
 
 ---
 苏宁易购：
 
-![发送苏宁优惠信息](https://github.com/why2lyj/youxiang/blob/master/images/suningyangli.jpg?raw=true)
+![发送苏宁优惠信息](images/suningyangli.jpg)
 
 ## 声明
 
@@ -244,7 +244,7 @@ python main.py
 ## 最后最后最后还是建个群什么的做下交流。留个二维码。
 
 备注写【github】，否则不同过哦。
-![加不加随意](https://github.com/why2lyj/youxiang/blob/master/images/6050dfdc-dfef-43c0-94b8-33148f6f5bd8.jpg?raw=true)
+![加不加随意](images/6050dfdc-dfef-43c0-94b8-33148f6f5bd8.jpg)
 
 ## 加个starchart，在此感谢您能够专心致志的读到这里，给项目点个赞吧~
- [![Stargazers over time](https://starchart.cc/why2lyj/youxiang.svg)](https://starchart.cc/why2lyj/youxiang)
+ [![Stargazers over time](https://starchart.cc/why2lyj/youxiang-Itchat.svg)](https://starchart.cc/why2lyj/youxiang-Itchat)

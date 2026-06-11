@@ -206,7 +206,7 @@ python main.py
 
 如果你不想每次都进容器改`_config.yaml`在第2步的时候可以将项目目录映射到本地
   ```shell
-  docker run -it -d -v $pwd:/youxiang --name youxiang youxiang:1.0.0
+  docker run -it -d -v "$(pwd):/youxiang" --name youxiang youxiang:1.0.0
   ```
 ## 示例截图：
 ---
